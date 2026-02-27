@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salary Prediction</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_FrjC-jzCXpXuoxEF7ynnj_uahadzt-G_Kw&s") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.6);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-box {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .result {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="overlay">
+    <div class="form-box">
+
+        <h2>Salary Prediction</h2>
+
+        <form action="/predict" method="post">
+
+            <!-- Age -->
+            <label>Age</label>
+            <input type="number" step="1" name="age" required>
+
+            <!-- Gender -->
+            <label>Gender</label>
+            <select name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <!-- Education Level -->
+            <label>Education Level</label>
+            <select name="education" required>
+                <option value="Diploma">Diploma</option>
+                <option value="Bachelor">Bachelor</option>
+                <option value="Master">Master</option>
+                <option value="PhD">PhD</option>
+            </select>
+
+            <!-- Job Title -->
+            <label>Job Title</label>
+            <select name="job_title" required>
+                <option value="Software Engineer">Software Engineer</option>
+                <option value="Data Scientist">Data Scientist</option>
+                <option value="Web Developer">Web Developer</option>
+                <option value="Manager">Manager</option>
+                <option value="HR">HR</option>
+            </select>
+
+            <!-- Years of Experience -->
+            <label>Years of Experience</label>
+            <input type="number" step="0.1" name="experience" required>
+
+            <button type="submit">Predict Salary</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                {{ prediction }}
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+
+</body>
+</html>
